@@ -53,10 +53,7 @@ public class Vector extends Point{
         return ((getXyz().d1* getXyz().d1)+(getXyz().d2* getXyz().d2)+(getXyz().d3* getXyz().d3));
     }
 
-    /**
-     * we calc the length of vector
-     * @return length of vector
-     */
+
     public double length() {
         return Math.sqrt(lengthSquared());
     }
