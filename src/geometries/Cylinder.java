@@ -17,7 +17,7 @@ private double _height;
     }
     @Override
     public Vector getNormal(Point p){
-        return null;
+        return super.getNormal(p);
     }
 
     public double getHeight() {

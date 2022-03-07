@@ -17,8 +17,10 @@ public class Tube implements Geometry {
       this._radius = radius;
     }
     @Override
-    public Vector getNormal(Point p){
-      return null;
+    public Vector getNormal(Point temp){
+        double t = _axisRay.getVec().dotProduct(temp.subtract(_axisRay.getPoint()));
+        Point o = _axisRay.getPoint().add(_axisRay.getVec().scale(t));
+        return temp.subtract(o).normalize();
     }
 
     public Ray getAxisRay() {

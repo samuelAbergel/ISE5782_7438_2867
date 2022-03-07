@@ -11,6 +11,7 @@ public class Ray {
      * @param v second number value
      */
     public Ray(Point p,Vector v){
+        this._dir = v;
         if(this._dir.normalize() == this._dir){
             this._p0 = p;
             this._dir = v;
