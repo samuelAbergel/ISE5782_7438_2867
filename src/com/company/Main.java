@@ -30,19 +30,19 @@ public final class Main {
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(0, 3, -2);
 
-        // test length..
+     /*   // test length..
         if (!isZero(v1.lengthSquared() - 14))
             out.println("ERROR: lengthSquared() wrong value");
         if (!isZero(new Vector(0, 3, 4).length() - 5))
             out.println("ERROR: length() wrong value");
-
-       // test Dot-Product
+*/
+     /*     // test Dot-Product
         if (!isZero(v1.dotProduct(v3)))
             out.println("ERROR: dotProduct() for orthogonal vectors is not zero");
         if (!isZero(v1.dotProduct(v2) + 28))
             out.println("ERROR: dotProduct() wrong value");
-
-        // test Cross-Product
+*/
+     /*  // test Cross-Product
         try { // test zero vector
             v1.crossProduct(v2);
             out.println("ERROR: crossProduct() for parallel vectors does not throw an exception");
@@ -53,7 +53,7 @@ public final class Main {
             out.println("ERROR: crossProduct() wrong result length");
         if (!isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)))
             out.println("ERROR: crossProduct() result is not orthogonal to its operands");
-
+*/
         // test vector normalization vs vector length and cross-product
         Vector v = new Vector(1, 2, 3);
         Vector u = v.normalize();
