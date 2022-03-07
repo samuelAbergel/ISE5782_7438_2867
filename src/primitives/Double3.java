@@ -45,6 +45,18 @@ class Double3 {
         return isZero(_d1 - other._d1) && isZero(_d2 - other._d2) && isZero(_d3 - other._d3);
     }
 
+    public double getD1() {
+        return _d1;
+    }
+
+    public double getD2() {
+        return _d2;
+    }
+
+    public double getD3() {
+        return _d3;
+    }
+
     @Override
     public int hashCode() {
         return (int) Math.round(_d1 + _d2 + _d3);

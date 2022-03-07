@@ -26,7 +26,6 @@ public class Vector extends Point{
             throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
     }
 
-
     /**
      * sum of two vector
      * @param v right handle side operand for addition

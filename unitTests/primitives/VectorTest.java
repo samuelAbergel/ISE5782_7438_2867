@@ -17,13 +17,12 @@ class VectorTest {
     @Test
     void testAdd() {
 
-        if (!(p1.add(new Vector(-1, -2, -3)).equals(new Point(0, 0, 0))))
-            out.println("ERROR: Point + Vector does not work correctly");
-     //   assertEquals((p1.add(new Vector(-1, -2, -3),new Point(0, 0, 0),"ERROR: Point + Vector does not work correctly");
+        assertEquals((p1.add(new Vector(-1, -2, -3))),new Point(0, 0, 0),"ERROR: Point + Vector does not work correctly");
     }
 
     @Test
     void testSubtract() {
+        assertEquals(new Vector(1, 1, 1),new Point(2, 3, 4).subtract(p1),"ERROR: Point - Point does not work correctly");
     }
 
     @Test
@@ -79,5 +78,13 @@ class VectorTest {
 
     @Test
     void testNormalize() {
+        assertEquals(1.0001,new Vector(1, 2, 3).normalize().length(),0.0001,"ERROR: the normalized vector is not a unit vector");
+        assertFalse(v1.dotProduct(v1.normalize())<0,"ERROR: the normalized vector is opposite to the original one");
+        try {
+            v1.crossProduct(v1.normalize());
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+
     }
 }

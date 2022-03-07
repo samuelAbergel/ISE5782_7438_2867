@@ -33,6 +33,7 @@ public class Point {
     public Double3 getXyz() {
         return _xyz;
     }
+
     /**
      * sum of two points
      * @param v right handle side operand for addition
