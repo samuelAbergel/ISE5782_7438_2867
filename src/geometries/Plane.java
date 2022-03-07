@@ -4,8 +4,8 @@ import primitives.Point;
 import primitives.Vector;
 
 public class Plane implements Geometry{
-    private Point q0;
-    private Vector normal;
+    private Point _q0;
+    private Vector _normal;
     /**
      * Constructor to initialize plane based object with its three number values
      *
@@ -18,10 +18,11 @@ public class Plane implements Geometry{
         Vector V = p3.subtract(p1);
 
         Vector N = U.crossProduct(V);
-        N.normalize();
-        normal = N;
-        this.q0 = p1;
+       N.normalize();
+        _normal = N;
+        this._q0 = p1;
     }
+
     /**
      * Constructor to initialize plane based object with its point and vector
      *
@@ -29,27 +30,28 @@ public class Plane implements Geometry{
      * @param normal second number value
      */
     public Plane(Point p,Vector normal){
-        this.normal = normal;
-        this.q0 = q0;
+        super();
+        this._normal = normal;
+        this._q0 = _q0;
     }
     public Vector getNormal() {
-        return normal;
+        return _normal;
     }
 
     public Point getQ0() {
-        return q0;
+        return _q0;
     }
 
     @Override
     public String toString() {
         return "Plane{" +
-                "q0=" + q0 +
-                ", normal=" + normal +
+                "q0=" + _q0 +
+                ", normal=" + _normal +
                 '}';
     }
 
     @Override
     public Vector getNormal(Point point) {
-        return null;
+        return _normal;
     }
 }

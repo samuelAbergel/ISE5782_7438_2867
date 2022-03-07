@@ -2,8 +2,8 @@ package geometries;
 import primitives.*;
 
 public class Sphere implements  Geometry{
-    private Point center;
-    private double radius;
+    private Point _center;
+    private double _radius;
 
     /**
      * Constructor to initialize Sphere based object with its point and number
@@ -12,8 +12,8 @@ public class Sphere implements  Geometry{
      * @param r second number value
      */
     public Sphere(Point c,double r){
-        this.center = c;
-        this.radius = r;
+        this._center = c;
+        this._radius = r;
 
     }
     @Override
@@ -22,14 +22,14 @@ public class Sphere implements  Geometry{
     }
 
     public Point getCenter() {
-        return center;
+        return _center;
     }
 
     @Override
     public String toString() {
         return "Sphere{" +
-                "center=" + center +
-                ", radius=" + radius +
+                "center=" + _center +
+                ", radius=" + _radius +
                 '}';
     }
 }

@@ -1,8 +1,8 @@
 package primitives;
 
 public class Ray {
-    private Point p0;
-    private Vector dir;
+    private Point _p0;
+    private Vector _dir;
 
     /**
      * Constructor to initialize Ray based object with its vector and point
@@ -11,21 +11,21 @@ public class Ray {
      * @param v second number value
      */
     public Ray(Point p,Vector v){
-        if(this.dir.normalize() == this.dir){
-            this.p0 = p;
-            this.dir = v;
+        if(this._dir.normalize() == this._dir){
+            this._p0 = p;
+            this._dir = v;
         }
         else{
-            this.dir.normalize();
-            this.p0 = p;
-            this.dir = v;
+            this._dir.normalize();
+            this._p0 = p;
+            this._dir = v;
         }
     }
     public Vector getVec(){
-        return dir;
+        return _dir;
     }
     public Point getPoint(){
-        return p0;
+        return _p0;
     }
 
 }

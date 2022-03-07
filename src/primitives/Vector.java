@@ -13,10 +13,19 @@ public class Vector extends Point{
      */
 
     public Vector(double x, double y, double z) {
-        super(x,y,z);
+       /* super(x,y,z);
+        if (getXyz().equals(ZERO))
+            throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
+            */
+        this(new Double3(x,y,z));
+    }
+
+    public Vector(Double3 xyz) {
+        super(xyz._d1,xyz._d2,xyz._d3);
         if (getXyz().equals(ZERO))
             throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
     }
+
 
     /**
      * sum of two vector
@@ -24,7 +33,7 @@ public class Vector extends Point{
      * @return sum of addition
      */
     public Vector add(Vector v){
-        return new Vector(getXyz().d1+v.getXyz().d1,getXyz().d2+v.getXyz().d2,getXyz().d3+v.getXyz().d3);
+        return new Vector(getXyz()._d1 +v.getXyz()._d1,getXyz()._d2 +v.getXyz()._d2,getXyz()._d3 +v.getXyz()._d3);
     }
 
     /**
@@ -33,7 +42,7 @@ public class Vector extends Point{
      * @return sum of substraction
      */
     public Vector subtract(Vector v){
-        return new Vector(getXyz().d1-v.getXyz().d1,getXyz().d2-v.getXyz().d2,getXyz().d3-v.getXyz().d3);
+        return new Vector(getXyz()._d1 -v.getXyz()._d1,getXyz()._d2 -v.getXyz()._d2,getXyz()._d3 -v.getXyz()._d3);
     }
 
     /**
@@ -42,7 +51,7 @@ public class Vector extends Point{
      * @return sum of multiplication
      */
     public Vector scale(double a){
-        return new Vector(getXyz().d1*a,getXyz().d2*a,getXyz().d3*a);
+        return new Vector(getXyz()._d1 *a,getXyz()._d2 *a,getXyz()._d3 *a);
     }
 
     /**
@@ -50,7 +59,7 @@ public class Vector extends Point{
      * @return lenghtsquared of a vector
      */
     public double lengthSquared() {
-        return ((getXyz().d1* getXyz().d1)+(getXyz().d2* getXyz().d2)+(getXyz().d3* getXyz().d3));
+        return ((getXyz()._d1 * getXyz()._d1)+(getXyz()._d2 * getXyz()._d2)+(getXyz()._d3 * getXyz()._d3));
     }
 
 
@@ -64,7 +73,7 @@ public class Vector extends Point{
      * @return sum of dot product
      */
     public double dotProduct(Vector v3) {
-        return (getXyz().d1*v3.getXyz().d1 + getXyz().d2*v3.getXyz().d2 + getXyz().d3*v3.getXyz().d3);
+        return (getXyz()._d1 *v3.getXyz()._d1 + getXyz()._d2 *v3.getXyz()._d2 + getXyz()._d3 *v3.getXyz()._d3);
     }
 
     /**
@@ -73,7 +82,9 @@ public class Vector extends Point{
      * @return vector of cross product
      */
     public Vector crossProduct(Vector v2) {
-        return new Vector(getXyz().d2*v2.getXyz().d3- getXyz().d3*v2.getXyz().d2 ,getXyz().d3*v2.getXyz().d1- getXyz().d1*v2.getXyz().d3,getXyz().d1*v2.getXyz().d2- getXyz().d2*v2.getXyz().d1);
+        return new Vector((getXyz()._d2 *v2.getXyz()._d3) - (getXyz()._d3 *v2.getXyz()._d2),
+                (getXyz()._d3 *v2.getXyz()._d1) - (getXyz()._d1 *v2.getXyz()._d3),
+                (getXyz()._d1 *v2.getXyz()._d2) - (getXyz()._d2 *v2.getXyz()._d1));
     }
 
     /**
@@ -82,7 +93,8 @@ public class Vector extends Point{
      */
     public Vector normalize() {
         double m = length();
-        return new Vector(getXyz().d1/m,getXyz().d2/m,getXyz().d3/m);
+       this._xyz =  this._xyz.reduce(m);
+       return this;
     }
 
     @Override

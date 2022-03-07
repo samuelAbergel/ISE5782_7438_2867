@@ -1,11 +1,10 @@
 package primitives;
 
 import java.util.Objects;
-import primitives.*;
 
 public class Point {
 
-    protected Double3 xyz;
+    protected Double3 _xyz;
 
     /**
      * Constructor to initialize point based object with its three number values
@@ -15,12 +14,12 @@ public class Point {
      * @param z third number value
      */
     public Point(double x, double y , double z) {
-       xyz = new Double3(x,y,z);
+       _xyz = new Double3(x,y,z);
     }
 
     @Override
     public String toString() {
-        return xyz.toString();
+        return _xyz.toString();
     }
 
     @Override
@@ -28,11 +27,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return Objects.equals(xyz, point.xyz);
+        return Objects.equals(_xyz, point._xyz);
     }
 
     public Double3 getXyz() {
-        return xyz;
+        return _xyz;
     }
     /**
      * sum of two points
@@ -40,7 +39,7 @@ public class Point {
      * @return sum of addition
      */
     public Point add(Vector v) {
-        return new Point(xyz.d1+v.xyz.d1,xyz.d2+v.xyz.d2,xyz.d3+v.xyz.d3);
+        return new Point(_xyz._d1 +v._xyz._d1, _xyz._d2 +v._xyz._d2, _xyz._d3 +v._xyz._d3);
 
     }
     /**
@@ -52,14 +51,14 @@ public class Point {
         if (p1.equals(this))
             throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
 
-        return new Vector(xyz.d1 - p1.xyz.d1,xyz.d2-p1.xyz.d2,xyz.d3-p1.xyz.d3);
+        return new Vector(_xyz._d1 - p1._xyz._d1, _xyz._d2 -p1._xyz._d2, _xyz._d3 -p1._xyz._d3);
     }
     /**
      * we calculate the distance of a squared point
      * @return distanceSquared of a point
      */
     public double distanceSquared(Point p){
-        return((p.xyz.d1-xyz.d1)*(p.xyz.d1-xyz.d1)+(p.xyz.d2-xyz.d2)*(p.xyz.d2-xyz.d2)+(p.xyz.d3-xyz.d3)*(p.xyz.d3-xyz.d3));
+        return((p._xyz._d1 - _xyz._d1)*(p._xyz._d1 - _xyz._d1)+(p._xyz._d2 - _xyz._d2)*(p._xyz._d2 - _xyz._d2)+(p._xyz._d3 - _xyz._d3)*(p._xyz._d3 - _xyz._d3));
     }
     /**
      * we calc the distance of point
