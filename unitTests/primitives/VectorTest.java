@@ -6,6 +6,7 @@ import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
+
 class VectorTest {
 
     Vector v1 = new Vector(1, 2, 3);
@@ -13,10 +14,12 @@ class VectorTest {
     Vector v3 = new Vector(0, 3, -2);
     Point p1 = new Point(1, 2, 3);
 
-
+   @Test
+    void testZero() {
+        assertThrows(IllegalArgumentException.class, () -> new Vector(0,0,0),"Error : zero vector doesn't throw an exeption");
+    }
     @Test
     void testAdd() {
-
         assertEquals((p1.add(new Vector(-1, -2, -3))),new Point(0, 0, 0),"ERROR: Point + Vector does not work correctly");
     }
 
@@ -27,6 +30,7 @@ class VectorTest {
 
     @Test
     void testScale() {
+       assertEquals(new Vector(2,4,6), v1.scale(2),"ERROR: scale() wrong value");
     }
 
     @Test

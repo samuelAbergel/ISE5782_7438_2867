@@ -1,7 +1,12 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
+
+
+import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 public class Plane implements Geometry{
     private Point _q0;
@@ -30,9 +35,8 @@ public class Plane implements Geometry{
      * @param normal second number value
      */
     public Plane(Point p,Vector normal){
-        super();
         this._normal = normal;
-        this._q0 = _q0;
+        this._q0 = p;
     }
     public Vector getNormal() {
         return _normal;
@@ -53,5 +57,35 @@ public class Plane implements Geometry{
     @Override
     public Vector getNormal(Point point) {
         return _normal;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        Point p0 = ray.getPoint();
+        Vector v = ray.getVec();
+        Vector n = _normal;
+
+        if(_q0.equals(p0)){
+            return null;
+        }
+
+        double nv = alignZero(n.dotProduct(v));
+        //ray is lying in the play axis
+        if (isZero(nv)){
+            return null;
+        }
+        Vector Q0P0 = _q0.subtract(p0);
+        //numerator
+        double nQMinusP0 = alignZero(n.dotProduct(Q0P0));
+        //t should > 0
+        if(isZero(nQMinusP0)){
+            return null;
+        }
+        double t = alignZero(nQMinusP0/nv);
+       // t sould >0
+        if(t<= 0){
+            return  null;
+        }
+        return List.of(ray.getPoint(t));
     }
 }

@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 public class Ray {
     private Point _p0;
     private Vector _dir;
@@ -29,4 +31,17 @@ public class Ray {
         return _p0;
     }
 
+    /**
+     *
+     * get point at specific distance
+     *
+     * @param t distance for reaching new point
+     * @return new {@link Point}
+     */
+    public Point getPoint(double t) {
+        if(isZero(t)){
+            throw new IllegalArgumentException("t equal 0 cause illegal vector 0");
+        }
+        return _p0.add(_dir.scale(t));
+    }
 }

@@ -10,7 +10,7 @@ import static primitives.Util.*;
  *
  * @author Dan Zilberstein
  */
-class Double3 {
+public class Double3 {
     final double _d1;
     final double _d2;
     final double _d3;
@@ -45,15 +45,15 @@ class Double3 {
         return isZero(_d1 - other._d1) && isZero(_d2 - other._d2) && isZero(_d3 - other._d3);
     }
 
-    public double getD1() {
+    public double getX() {
         return _d1;
     }
 
-    public double getD2() {
+    public double getY() {
         return _d2;
     }
 
-    public double getD3() {
+    public double getZ() {
         return _d3;
     }
 

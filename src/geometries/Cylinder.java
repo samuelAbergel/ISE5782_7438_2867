@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 public class Cylinder extends Tube implements Geometry{
 private double _height;
     /**
@@ -12,7 +14,7 @@ private double _height;
      * @param height third number value
      */
     public Cylinder(Ray axisRay, double radius,double height) {
-        super(axisRay, radius);
+        super( radius,axisRay);
         this._height = height;
     }
     @Override
@@ -31,5 +33,10 @@ private double _height;
                 ", axisRay=" + _axisRay +
                 ", radius=" + _radius +
                 "} " + super.toString();
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }
