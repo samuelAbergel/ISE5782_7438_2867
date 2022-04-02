@@ -24,8 +24,8 @@ public class Tube implements Geometry {
 
     @Override
     public Vector getNormal(Point temp){
-        double t = _axisRay.getVec().dotProduct(temp.subtract(_axisRay.getPoint()));
-        Point o = _axisRay.getPoint().add(_axisRay.getVec().scale(t));
+        double t = _axisRay.getVec().dotProduct(temp.subtract(_axisRay.getP0()));
+        Point o = _axisRay.getP0().add(_axisRay.getVec().scale(t));
         return temp.subtract(o).normalize();
     }
 
@@ -49,7 +49,7 @@ public class Tube implements Geometry {
     public List<Point> findIntersections(Ray ray) {
         Vector vAxis = _axisRay.getVec();
         Vector v = ray.getVec();
-        Point p0 = ray.getPoint();
+        Point p0 = ray.getP0();
 
         // At^2+Bt+C=0
         double a = 0;
@@ -74,7 +74,7 @@ public class Tube implements Geometry {
 
         Vector deltaP = null;
         try {
-            deltaP = p0.subtract(_axisRay.getPoint());
+            deltaP = p0.subtract(_axisRay.getP0());
         } catch (IllegalArgumentException e1) { // the ray begins at axis P0
             if (vVa == 0) // the ray is orthogonal to Axis
                 return List.of(ray.getPoint(_radius));

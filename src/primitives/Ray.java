@@ -1,47 +1,53 @@
 package primitives;
 
+import java.util.List;
+import java.util.Objects;
+
 import static primitives.Util.isZero;
 
 public class Ray {
-    private Point _p0;
-    private Vector _dir;
+    private final Point p0;
+    private final Vector dir;
 
-    /**
-     * Constructor to initialize Ray based object with its vector and point
-     *
-     * @param p first number value
-     * @param v second number value
-     */
-    public Ray(Point p,Vector v){
-        this._dir = v;
-        if(this._dir.normalize() == this._dir){
-            this._p0 = p;
-            this._dir = v;
-        }
-        else{
-            this._dir.normalize();
-            this._p0 = p;
-            this._dir = v;
-        }
-    }
-    public Vector getVec(){
-        return _dir;
-    }
-    public Point getPoint(){
-        return _p0;
+    public Ray(Point p0, Vector dir) {
+        this.p0 = p0;
+        this.dir = dir;
     }
 
-    /**
-     *
-     * get point at specific distance
-     *
-     * @param t distance for reaching new point
-     * @return new {@link Point}
-     */
-    public Point getPoint(double t) {
-        if(isZero(t)){
-            throw new IllegalArgumentException("t equal 0 cause illegal vector 0");
-        }
-        return _p0.add(_dir.scale(t));
+    public Point getP0() {
+        return p0;
     }
+
+    public Vector getVec() {
+        return dir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ray ray = (Ray) o;
+        return p0.equals(ray.p0) && dir.equals(ray.dir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(p0, dir);
+    }
+
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "p0=" + p0 +
+                ", dir=" + dir +
+                '}';
+    }
+
+    public Point getPoint(double delta ){
+        if (isZero(delta)){
+            return  p0;
+        }
+        return p0.add(dir.scale(delta));
+    }
+
 }

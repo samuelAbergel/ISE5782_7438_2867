@@ -39,7 +39,7 @@ public class Sphere implements  Geometry{
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point P0 = ray.getPoint();
+        Point P0 = ray.getP0();
         Vector v = ray.getVec();
 
         if (P0.equals(_center)) {

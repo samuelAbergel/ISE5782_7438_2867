@@ -43,16 +43,17 @@ public class Point {
         return new Point(_xyz._d1 +v._xyz._d1, _xyz._d2 +v._xyz._d2, _xyz._d3 +v._xyz._d3);
 
     }
+    public Vector add(Point p) {
+        return new Vector(_xyz._d1 +p._xyz._d1, _xyz._d2 +p._xyz._d2, _xyz._d3 +p._xyz._d3);
+    }
     /**
      * subtract two point
-     * @param p1 right handle side operand for addition
+     * @param other right handle side operand for addition
      * @return sum of subtraction
      */
-    public Vector subtract(Point p1) {
-        if (p1.equals(this))
-            throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
-
-        return new Vector(_xyz._d1 - p1._xyz._d1, _xyz._d2 -p1._xyz._d2, _xyz._d3 -p1._xyz._d3);
+    public Vector subtract(Point other) {
+        return new Vector(other._xyz.subtract(_xyz));
+//        return new Vector(xyz.subtract(other.xyz));
     }
     /**
      * we calculate the distance of a squared point
