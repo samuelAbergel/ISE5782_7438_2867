@@ -64,7 +64,7 @@ public class Camera {
         }
 
         // vector from camera's eye in the direction of point(i,j) in the viewplane
-        Vector Vij = p0.subtract(Pij);
+        Vector Vij = p0.add(Pij);
 
         return new Ray(p0, Vij);
 

@@ -6,12 +6,20 @@ import java.util.Objects;
 import static primitives.Util.isZero;
 
 public class Ray {
-    private final Point p0;
-    private final Vector dir;
+    private  Point p0;
+    private  Vector dir;
 
     public Ray(Point p0, Vector dir) {
-        this.p0 = p0;
         this.dir = dir;
+        if(this.dir.normalize() == this.dir){
+            this.p0 = p0;
+            this.dir = dir;
+        }
+        else{
+            this.dir.normalize();
+            this.p0 = p0;
+            this.dir = dir;
+        }
     }
 
     public Point getP0() {
@@ -43,11 +51,16 @@ public class Ray {
                 '}';
     }
 
-    public Point getPoint(double delta ){
-        if (isZero(delta)){
-            return  p0;
+    public Point getPoint(double t ) {
+        if (t == 0)
+            return p0;
+        else {
+            try {
+                Point point = new Point(p0).add(dir.scale(t));
+                return point;
+            } catch (Exception exception) {
+                return null;
+            }
         }
-        return p0.add(dir.scale(delta));
     }
-
 }

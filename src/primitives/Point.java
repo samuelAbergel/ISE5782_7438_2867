@@ -16,6 +16,9 @@ public class Point {
     public Point(double x, double y , double z) {
        _xyz = new Double3(x,y,z);
     }
+    public Point(Point other){
+        _xyz=other._xyz;
+    }
 
     @Override
     public String toString() {
@@ -23,11 +26,15 @@ public class Point {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Objects.equals(_xyz, point._xyz);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Point))
+            return false;
+        Point oth = (Point) obj;
+        return _xyz.equals(oth._xyz) ;
     }
 
     public Double3 getXyz() {
@@ -51,9 +58,15 @@ public class Point {
      * @param other right handle side operand for addition
      * @return sum of subtraction
      */
-    public Vector subtract(Point other) {
+   /* public Vector subtract(Point other) {
         return new Vector(other._xyz.subtract(_xyz));
 //        return new Vector(xyz.subtract(other.xyz));
+    }*/
+    public Vector subtract(Point p1) {
+        if (p1.equals(this))
+            throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
+
+        return new Vector(_xyz._d1 - p1._xyz._d1, _xyz._d2 -p1._xyz._d2, _xyz._d3 -p1._xyz._d3);
     }
     /**
      * we calculate the distance of a squared point

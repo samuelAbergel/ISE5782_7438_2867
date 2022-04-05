@@ -18,8 +18,8 @@ public class Tube implements Geometry {
      * @param radius second number value
      */
     public Tube(double radius,Ray axisRay){
-      this._axisRay = axisRay;
-      this._radius = radius;
+        this._axisRay = axisRay;
+        this._radius = radius;
     }
 
     @Override
